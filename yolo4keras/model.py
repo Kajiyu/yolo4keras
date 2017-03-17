@@ -10,9 +10,6 @@ class YoloModel():
     def __init__(self, config):
         self.build_network()
 
-    def __call__(self):
-        return self.model
-
     def build_network(self):
         self.input_tensor = Input(shape=(448, 448, 3))
         self.x = Convolution2D(64, 7, 7, activation='relu', border_mode='same', name='conv1', \
@@ -49,3 +46,4 @@ class YoloModel():
         self.x = Dense(1470, activation='linear', name='fc3')(self.x)
         # Create model.
         self.model = Model(input_tensor, x, name='yolo')
+        print self.model.summary()
